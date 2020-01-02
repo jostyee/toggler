@@ -2,9 +2,9 @@ FROM golang:alpine AS builder
 
 COPY . /src
 WORKDIR /src/cmd/toggler
-RUN apk --no-cache add build-base ca-certificates git gcc \
+RUN apk --no-cache add build-base ca-certificates git \
     && go get -d -v ./... \
-    && CGO_ENABLED=1 CC=gcc go build -o toggler
+    && CGO_ENABLED=0 go build -o toggler
 
 FROM alpine
 
